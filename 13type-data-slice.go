@@ -43,7 +43,7 @@ func main() {
 
 	// copy slice
 	fromSlice := mount
-	toSlice := make([]string, len(fromSlice), cap(fromSlice))
+	toSlice := make([]string, len(fromSlice), cap(fromSlice)) 
 	copy(toSlice, fromSlice)
 	fmt.Println("ini copy slice", toSlice)
 }
