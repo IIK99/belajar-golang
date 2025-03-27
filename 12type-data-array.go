@@ -38,7 +38,7 @@ func main() {
 	fmt.Println(d)
 
 	// array yang tidak tentu jumlah data yang di input
-	var e = []int{
+	var e = [...]int{
 		90, 55, 99,
 	}
 	fmt.Println(e)
