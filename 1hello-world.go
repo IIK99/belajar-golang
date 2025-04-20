@@ -12,3 +12,4 @@ func main() {
 // go mod init hello-world
 // go build
 // go run . (cara run di terminal)
+// penamaan file go yang benar adalah huruf kecil semua, jika ada spasi diganti dengan - (strip) atau _ (underscore), tidak boleh ada nomor di depan nama file go
