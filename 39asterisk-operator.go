@@ -20,3 +20,6 @@ func main() {
 	fmt.Println(address1) // address1 changed
 	fmt.Println(address2) // address2 changed
 }
+
+// & itu seperti bikin alamat baru tanpa mengubah variable 1
+// sedangkan * itu seperti bikin isi baru dan semua variable yang mengarah ke alamat itu akan berubah

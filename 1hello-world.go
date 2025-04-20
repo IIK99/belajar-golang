@@ -13,3 +13,6 @@ func main() {
 // go build
 // go run . (cara run di terminal)
 // penamaan file go yang benar adalah huruf kecil semua, jika ada spasi diganti dengan - (strip) atau _ (underscore), tidak boleh ada nomor di depan nama file go
+// nama func/type/interface wajib berawal dengan huruf besar (pascal case) 
+// karena supaya bisa di import di package lain
+// jika huruf kecil tidak bisa di import di package lain
