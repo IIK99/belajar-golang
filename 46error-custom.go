@@ -32,7 +32,7 @@ func SaveData(id string, data any) error {
 }
 
 func main() {
-	err := SaveData("Iik", nil) // ID kosong, random, Iik = data tidak ditemukan
+	err := SaveData("Iik", nil) // ID kosong, random, Iik = data berhasil disimpan
 	if err != nil {
 		// // terjadi error
 		// if ValidationError, ok := err.(*ValidationError); ok {
