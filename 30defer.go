@@ -4,7 +4,7 @@ package main
 
 import "fmt"
 
-func logging () {
+func logging() {
 	fmt.Println("Success login")
 }
 
