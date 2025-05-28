@@ -6,14 +6,14 @@ import (
 )
 
 type Sample struct {
-	Name string `required:"true" max:"100"` // tag untuk validasi
+	Name string `required:"true" max:"10"` // tag untuk validasi
 	// Tag ini bisa digunakan untuk validasi, misalnya dengan library seperti go-playground/validator
 }
 
 type Person struct {
-	Name 	string `required:"true" max:"100"`
-	Address string `required:"true" max:"100"`
-	Email 	string `required:"true" max:"100"` 
+	Name 	string `required:"true" max:"10"`
+	Address string `required:"true" max:"10"`
+	Email 	string `required:"true" max:"10"` 
 }
 
 func readField(value any) {
@@ -26,7 +26,34 @@ func readField(value any) {
 	}
 }
 
+func IsValid(value any) (result bool) {
+	result = true
+	// t = target, f = field
+	t := reflect.TypeOf(value)
+	for i := 0; i < t.NumField(); i++ {
+		f := t.Field(i)
+		if f.Tag.Get("required") == "true" {
+			data := reflect.ValueOf(value).Field(i).Interface()
+			result = data != ""
+			if result == false {
+				return result
+			}
+		}
+	}
+	return result
+}
+
 func main() {
 	readField(Sample{Name: "Iik"})
-	readField(Person{Name: "Rin", Address: "Tokyo", Email: "rin@example.com"})
+	readField(Person{"Rin", "", ""})
+
+	person := Person {
+		Name:    "Rin",
+		Address: "Jakarta",
+		Email:   "rin@example.com",
+	}
+	fmt.Println("Is Sample valid?", IsValid(person))	
+	// pengecekan validasi ini bisa digunakan untuk validasi data yang masuk ke database
+	// tanpa harus mengecek satu persatu fieldnya secara manual
+	// tidak boleh ada field yang kosong
 }
