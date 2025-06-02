@@ -67,5 +67,4 @@ func main() {
 	// Fungsi readFile akan membaca file "example.txt" dan mengembalikan isi file tersebut sebagai string.
 	fmt.Println("Isi file:", result)
 	// Jika file tidak ditemukan, akan mengembalikan error. Tapi error nya saya ignore dengan menggunakan underscore (_).
-
 }
