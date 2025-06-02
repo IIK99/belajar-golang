@@ -1,2 +1,3 @@
 Hello, World!
 This is a new file created using os.OpenFile.
+This is an additional line added to the file.
