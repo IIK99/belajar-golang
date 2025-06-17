@@ -8,22 +8,24 @@ import "fmt"
 func main() {
 	// declaration type data
 	type Name struct {
+		nim int
 		firstName string
 		middleName string
-		lastName string
-		age int
-		height float64
+		address string
+		semester int
+		gpa float64
 		isStudent bool
 	}
 
 	// inisialisasi object
 	obj := Name{
+		nim: 123456789,
 		firstName: "Iik",
-		middleName: "Muhammad",
-		lastName: "Ikmal",
-		age: 25,
-		height: 1.78,
-		isStudent: true,
+		middleName: "Muhammad Ikmal",
+		address: "Jl. Raya No. 123, Jakarta",
+		semester: 6,
+		gpa: 3.98,
+		isStudent: true, 
 	}
 
 	fmt.Println(obj)
