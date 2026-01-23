@@ -9,6 +9,55 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+func TestMain(m *testing.M) {
+	// before test
+	// contoh bisa digunakan untuk setup database
+	fmt.Println("Before Test Main")
+	m.Run()
+	
+	// after test
+	// contoh bisa digunakan untuk cleanup database
+	fmt.Println("Test Main Done")
+}
+
+// assertion = pengecekan apakah hasil sesuai dengan yang diharapkan
+// install library/kunjungi assertion = go get github.com/stretchr/testify
+
+// disarankan menggunakan kedua ini, sesuai kebutuhan
+func TestHelloWorldAssert(t *testing.T) {
+	result := HelloWord("Iik")
+	assert.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
+	// t, expected, actual, message
+	fmt.Print("Test Hello with assert is success")
+}
+
+func TestHelloWorldRequire(t *testing.T) {
+	result := HelloWord("Iik")
+	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
+	// t, expected, actual, message
+	fmt.Print("Test Hello with require is success")
+}
+
+// go test -v -run TestHelloWorldRequire
+// go test -v -run TestHelloWorldAssert
+
+// perbedaan require dan assert
+// require = error dan test function langsung berhenti
+// assert = error tapi test function tetap lanjut
+
+// skip test
+func TestSkip(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("Can't run on windows")
+	}
+
+	result := HelloWord("Iik")
+	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
+	fmt.Print("Test Hello with require is success")
+}
+
+// go test -v -run TestSkip
+
 // wajib nama function nya Test
 // harus memiliki parameter (t *testing.T) dan tidak boleh ada return value
 
@@ -41,41 +90,3 @@ func TestHelloWordIkmal(t *testing.T) {
 // perbedaan t.Error dan t.Fatal
 // t.Error = error tapi test function tetap lanjut
 // t.Fatal = error dan test function langsung berhenti
-
-// assertion = pengecekan apakah hasil sesuai dengan yang diharapkan
-// install library/kunjungi assertion = go get github.com/stretchr/testify
-
-// disarankan menggunakan kedua ini, sesuai kebutuhan
-func TestHelloWorldRequire(t *testing.T) {
-	result := HelloWord("Iik")
-	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
-	// t, expected, actual, message
-	fmt.Print("Test Hello with require is success")
-}
-
-func TestHelloWorldAssert(t *testing.T) {
-	result := HelloWord("Iik")
-	assert.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
-	// t, expected, actual, message
-	fmt.Print("Test Hello with assert is success")
-}
-
-// go test -v -run TestHelloWorldRequire
-// go test -v -run TestHelloWorldAssert
-
-// perbedaan require dan assert
-// require = error dan test function langsung berhenti
-// assert = error tapi test function tetap lanjut
-
-// skip test
-func TestSkip(t *testing.T) {
-	if runtime.GOOS == "windows" {
-		t.Skip("Can't run on windows")
-	}
-
-	result := HelloWord("Iik")
-	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
-	fmt.Print("Test Hello with require is success")
-}
-
-// go test -v -run TestSkip
