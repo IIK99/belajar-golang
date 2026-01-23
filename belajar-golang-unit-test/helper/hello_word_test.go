@@ -2,7 +2,9 @@ package helper
 
 import (
 	"fmt"
+	"runtime"
 	"testing"
+
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -43,6 +45,7 @@ func TestHelloWordIkmal(t *testing.T) {
 // assertion = pengecekan apakah hasil sesuai dengan yang diharapkan
 // install library/kunjungi assertion = go get github.com/stretchr/testify
 
+// disarankan menggunakan kedua ini, sesuai kebutuhan
 func TestHelloWorldRequire(t *testing.T) {
 	result := HelloWord("Iik")
 	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
@@ -64,3 +67,15 @@ func TestHelloWorldAssert(t *testing.T) {
 // require = error dan test function langsung berhenti
 // assert = error tapi test function tetap lanjut
 
+// skip test
+func TestSkip(t *testing.T) {
+	if runtime.GOOS == "windows" {
+		t.Skip("Can't run on windows")
+	}
+
+	result := HelloWord("Iik")
+	require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
+	fmt.Print("Test Hello with require is success")
+}
+
+// go test -v -run TestSkip
