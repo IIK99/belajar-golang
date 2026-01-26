@@ -27,9 +27,9 @@ func TestHelloWordTable(t *testing.T) {
 			expected: "Hello Ikmal",
 		},
 		{
-			name: "Iik Muhamad Ikmal",
-			require: "Iik Muhamad Ikmal",
-			expected: "Hello Iik Muhamad Ikmal",
+			name: "Iik Muhammad Ikmal",
+			require: "Iik Muhammad Ikmal",
+			expected: "Hello Iik Muhammad Ikmal",
 		},
 	}
 
