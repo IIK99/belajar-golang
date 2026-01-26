@@ -9,6 +9,22 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// subtest
+func TestSubTest(t *testing.T) {
+	t.Run("Iik", func(t* testing.T) {
+		result := HelloWord("Iik")
+		require.Equal(t, "Hello Iik", result, "Result must be 'Hello Iik'")
+		fmt.Print("Test Hello with require is success")
+	})
+	t.Run("Ikmal", func(t* testing.T) {
+		result := HelloWord("Ikmal")
+		require.Equal(t, "Hi Ikmal", result, "Result must be 'Hello Ikmal'")
+		fmt.Print("Test Hello with require is success")
+	})
+}
+// how to run subtest = go test -v -run TestSubTest
+// or go test -v -run TestSubTest/Iik
+
 func TestMain(m *testing.M) {
 	// before test
 	// contoh bisa digunakan untuk setup database
