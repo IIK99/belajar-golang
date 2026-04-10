@@ -9,6 +9,76 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
+// bencmark test
+func BenchmarkHelloWord(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWord("Iik")
+	}
+}
+
+func BenchmarkHelloWordIkmal(b *testing.B) {
+	for i := 0; i < b.N; i++ {
+		HelloWord("Ikmal")
+	}
+}
+
+// how to run benchmark test = go test -v -bench=.
+// eksekusi semua benchmark bersama unit test 
+// jalankan benchmark tanpa unit test = go test -v -run=^$ -bench .
+// jalankan salah satu benchmark = go test -v -run=^$ -bench=BenchmarkHelloWordIkmal
+// menjalakan benchmark terdahulu = go test -v -bench=. ./...
+// menjalakan benchmark saja diseluruh module = go test -v -run=^$ -bench=. ./...
+
+// sub benchmark test
+func BenchmarkHelloWordSub(b *testing.B) {
+	b.Run("HelloWord Iik", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWord("Iik")
+		}
+	})
+	b.Run("HelloWord Ikmal", func(b *testing.B) {
+		for i := 0; i < b.N; i++ {
+			HelloWord("Ikmal")
+		}
+	})
+}
+// how to run sub benchmark test = go test -v -run=^$ -bench .
+// jalankan salah satu sub benchmark = go test -v -run=^$ -bench=BenchmarkHelloWordSub/Ikmal
+
+// table benchmark test
+func BenchmarkTable(b *testing.B) {
+	benchmark := []struct {
+		name string
+		require string
+	}{
+		{
+			name: "Iik",
+			require: "Iik",
+		},
+		{
+			name: "Ikmal",
+			require: "Ikmal",
+		},
+		{
+			name: "Iik Muhammad Ikmal",
+			require: "Iik Muhammad Ikmal",
+		},
+		{
+			name: "Ini adalah benchmark test dengan require yang cukup panjang",
+			require: "Ini adalah benchmark test dengan require yang cukup panjang",
+		},
+	}
+
+	for _, benchmark := range benchmark {
+		b.Run(benchmark.name, func(b *testing.B) {
+			for i := 0; i < b.N; i++ {
+				HelloWord(benchmark.require)
+			}
+		})
+	}
+}
+// cara run table benchmark test = go test -v -run=^$ -bench=BenchmarkTable
+
 // test table
 func TestHelloWordTable(t *testing.T) {
 	tests := []struct {
